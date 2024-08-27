@@ -1,19 +1,21 @@
+import 'package:flutter_clean_architecture_cli/extension.dart';
+
 String getDetailsUseCaseTemplate(String featureName) => """
 import 'package:dartz/dartz.dart';
-import '/features/orders/data/models/order_model/order_model.dart';
-import '/features/orders/domain/repositories/base_order_repository.dart';
+import '../../data/models/${featureName}_model/${featureName}_model.dart';
+import '../../domain/repositories/base_${featureName}_repository.dart';
 
 import '../../../core/failure/failure.dart';
 
-class GetOrderDetailsUsecase {
-  final BaseOrderRepository repository;
+class Get${featureName.capitalize}DetailsUsecase {
+  final Base${featureName.capitalize}Repository repository;
 
-  GetOrderDetailsUsecase(this.repository);
+  Get${featureName.capitalize}DetailsUsecase(this.repository);
 
-  Future<Either<Failure, OrderModel?>> call({
+  Future<Either<Failure, ${featureName.capitalize}Model?>> call({
     required int id,
   }) async {
-    return await repository.getOrder(
+    return await repository.get${featureName.capitalize}(
       id: id,
     );
   }

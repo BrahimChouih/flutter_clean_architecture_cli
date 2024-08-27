@@ -1,22 +1,24 @@
+import 'package:flutter_clean_architecture_cli/extension.dart';
+
 String modelTemplate(String featureName) => """
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'order_model.freezed.dart';
-part 'order_model.g.dart';
+part '$featureName.freezed.dart';
+part '$featureName.g.dart';
 
 @freezed
-class OrderModel with _\$OrderModel {
-  const OrderModel._();
+class ${featureName.capitalize}Model with _\$${featureName.capitalize}Model {
+  const ${featureName.capitalize}Model._();
 
   @JsonSerializable(
     explicitToJson: true,
     includeIfNull: false,
   )
-  factory OrderModel({
+  factory ${featureName.capitalize}Model({
     int? id,
-  }) = _OrderModel;
+  }) = _${featureName.capitalize}Model;
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) =>
-      _\$OrderModelFromJson(json);
+  factory ${featureName.capitalize}Model.fromJson(Map<String, dynamic> json) =>
+      _\$${featureName.capitalize}ModelFromJson(json);
 }
 """;

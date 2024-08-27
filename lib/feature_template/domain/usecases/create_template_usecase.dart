@@ -1,28 +1,30 @@
+import 'package:flutter_clean_architecture_cli/extension.dart';
+
 String createUseCaseTemplate(String featureName) => """
 import 'package:dartz/dartz.dart';
-import '/features/orders/data/models/order_model/order_model.dart';
-import '/features/orders/domain/repositories/base_order_repository.dart';
+import '../../data/models/${featureName}_model/${featureName}_model.dart';
+import '../../domain/repositories/base_${featureName}_repository.dart';
 
 import '../../../core/failure/failure.dart';
 
-class CreateOrderUsecase {
-  final BaseOrderRepository repository;
+class Create${featureName.capitalize}Usecase {
+  final Base${featureName.capitalize}Repository repository;
 
-  CreateOrderUsecase(this.repository);
+  Create${featureName.capitalize}Usecase(this.repository);
 
-  Future<Either<Failure, OrderModel?>> call({
-    required OrderModel order,
+  Future<Either<Failure, ${featureName.capitalize}Model?>> call({
+    required ${featureName.capitalize}Model $featureName,
   }) async {
-    return await repository.createOrder(
-      order: order,
+    return await repository.create${featureName.capitalize}(
+      $featureName: $featureName,
     );
   }
 
-  Future<Either<Failure, OrderModel?>> update({
-    required OrderModel order,
+  Future<Either<Failure, ${featureName.capitalize}Model?>> update({
+    required ${featureName.capitalize}Model $featureName,
   }) async {
-    return await repository.createOrder(
-      order: order,
+    return await repository.create${featureName.capitalize}(
+      $featureName: $featureName,
       isUpdate: true,
     );
   }

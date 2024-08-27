@@ -1,11 +1,11 @@
-import 'package:flutter_clean_architecture_cli/flutter_clean_architecture_cli_functions.dart';
+import 'package:flutter_clean_architecture_cli/extension.dart';
 
 String datasourcesTamplate(String featureName) => """
 import '/core/configs/api_config.dart';
 import '/core/failure/failure.dart';
 import '/core/helpers/api_helper.dart';
 import '/core/pagination_controller/pagination_controller.dart';
-import '/features/$featureName/data/models/${featureName}_model/${featureName}_model.dart';
+import '../../data/models/${featureName}_model/${featureName}_model.dart';
 
 abstract class Base${featureName.capitalize}RemoteDataSource {
   Future<List<${featureName.capitalize}Model>> get${featureName.capitalize}s({

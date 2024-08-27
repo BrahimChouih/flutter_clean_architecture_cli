@@ -1,26 +1,28 @@
+import 'package:flutter_clean_architecture_cli/extension.dart';
+
 String repositoryDataTemplate(String featureName) => """
 import 'package:dartz/dartz.dart';
 import '/core/failure/failure.dart';
 import '/core/pagination_controller/pagination_controller.dart';
-import '/features/orders/data/models/order_model/order_model.dart';
-import '/features/orders/domain/repositories/base_order_repository.dart';
+import '../../data/models/${featureName}_model/${featureName}_model.dart';
+import '../../domain/repositories/base_${featureName}_repository.dart';
 
-import '../datasource/order_remote_datasource.dart';
+import '../datasource/${featureName}_remote_datasource.dart';
 
-class OrderRepository implements BaseOrderRepository {
-  final BaseOrderRemoteDataSource remoteDataSource;
+class ${featureName.capitalize}Repository implements Base${featureName.capitalize}Repository {
+  final Base${featureName.capitalize}RemoteDataSource remoteDataSource;
 
-  OrderRepository({required this.remoteDataSource});
+  ${featureName.capitalize}Repository({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, OrderModel?>> createOrder({
-    required OrderModel order,
+  Future<Either<Failure, ${featureName.capitalize}Model?>> create${featureName.capitalize}({
+    required ${featureName.capitalize}Model $featureName,
     bool isUpdate = false,
   }) async {
     try {
       return Right(
-        await remoteDataSource.createOrder(
-          order: order,
+        await remoteDataSource.create${featureName.capitalize}(
+          $featureName: $featureName,
           isUpdate: isUpdate,
         ),
       );
@@ -30,12 +32,12 @@ class OrderRepository implements BaseOrderRepository {
   }
 
   @override
-  Future<Either<Failure, List<OrderModel>>> getOrders({
+  Future<Either<Failure, List<${featureName.capitalize}Model>>> get${featureName.capitalize}s({
     PaginationOptions paginationOptions = const PaginationOptions(),
   }) async {
     try {
       return Right(
-        await remoteDataSource.getOrders(
+        await remoteDataSource.get${featureName.capitalize}s(
           paginationOptions: paginationOptions,
         ),
       );
@@ -45,10 +47,10 @@ class OrderRepository implements BaseOrderRepository {
   }
 
   @override
-  Future<Either<Failure, OrderModel?>> getOrder({required int id}) async {
+  Future<Either<Failure, ${featureName.capitalize}Model?>> get${featureName.capitalize}({required int id}) async {
     try {
       return Right(
-        await remoteDataSource.getOrder(
+        await remoteDataSource.get${featureName.capitalize}(
           id: id,
         ),
       );

@@ -1,21 +1,23 @@
+import 'package:flutter_clean_architecture_cli/extension.dart';
+
 String getUsecaseTemplate(String featureName) => """
 import 'package:dartz/dartz.dart';
 import '/core/pagination_controller/pagination_controller.dart';
-import '/features/orders/data/models/order_model/order_model.dart';
-import '/features/orders/domain/repositories/base_order_repository.dart';
+import '../../data/models/${featureName}_model/${featureName}_model.dart';
+import '../../domain/repositories/base_${featureName}_repository.dart';
 
 import '../../../core/failure/failure.dart';
 
-class GetOrdersUsecase {
-  final BaseOrderRepository repository;
+class Get${featureName.capitalize}sUsecase {
+  final Base${featureName.capitalize}Repository repository;
 
-  GetOrdersUsecase(this.repository);
+  Get${featureName.capitalize}sUsecase(this.repository);
 
-  Future<Either<Failure, List<OrderModel>>> call({
+  Future<Either<Failure, List<${featureName.capitalize}Model>>> call({
     int? id,
     PaginationOptions paginationOptions = const PaginationOptions(),
   }) async {
-    return await repository.getOrders(
+    return await repository.get${featureName.capitalize}s(
       paginationOptions: paginationOptions,
     );
   }

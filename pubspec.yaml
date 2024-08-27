@@ -4,7 +4,7 @@ version: 0.0.1
 homepage:
 
 executables:
-  flutter_clean_architecture_cli: flutter_clean_architecture_cli
+  clean_arch_cli: clean_arch_cli
 
 
 environment:
