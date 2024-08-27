@@ -54,7 +54,7 @@ class FlutterCleanArchitectureCLI {
     );
     //// Domain
     createFile(
-      '${repositoriesDomainDir.path}/${featureDir}_repository.dart',
+      '${repositoriesDomainDir.path}/base_${featureDir}_repository.dart',
       repositoryDomainTemplate(featureName),
     );
     createFile(

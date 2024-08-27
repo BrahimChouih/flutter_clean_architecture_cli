@@ -6,7 +6,7 @@ import '/core/pagination_controller/pagination_controller.dart';
 import '../../data/models/${featureName}_model/${featureName}_model.dart';
 import '../../domain/repositories/base_${featureName}_repository.dart';
 
-import '../../../core/failure/failure.dart';
+import '/core/failure/failure.dart';
 
 class Get${featureName.capitalize}sUsecase {
   final Base${featureName.capitalize}Repository repository;

@@ -3,8 +3,8 @@ import 'package:flutter_clean_architecture_cli/extension.dart';
 String modelTemplate(String featureName) => """
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part '$featureName.freezed.dart';
-part '$featureName.g.dart';
+part '${featureName}_model.freezed.dart';
+part '${featureName}_model.g.dart';
 
 @freezed
 class ${featureName.capitalize}Model with _\$${featureName.capitalize}Model {
