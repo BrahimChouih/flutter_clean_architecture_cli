@@ -7,6 +7,7 @@ import 'package:flutter_clean_architecture_cli/feature_template/domain/repositor
 import 'package:flutter_clean_architecture_cli/feature_template/domain/usecases/create_template_usecase.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/domain/usecases/get_template_details_usecase.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/domain/usecases/get_templates_usecase.dart';
+import 'package:flutter_clean_architecture_cli/feature_template/presentation/providers/template_provider.dart';
 
 class FlutterCleanArchitectureCLI {
   static void createFeatureStructure(String featureName) {
@@ -17,15 +18,19 @@ class FlutterCleanArchitectureCLI {
     final baseDir = Directory('lib/features/$featureDir');
     final dataDir = Directory('${baseDir.path}/data');
     final domainDir = Directory('${baseDir.path}/domain');
+    final presentationDir = Directory('${baseDir.path}/presentation');
 
-    //// data layer
+    //// Data layer
     final dataSourcesDir = Directory('${dataDir.path}/datasources');
     final modelsDir = Directory('${dataDir.path}/models');
     final repositoriesDataDir = Directory('${dataDir.path}/repositories');
 
-    //// domain layer
+    //// Domain layer
     final repositoriesDomainDir = Directory('${domainDir.path}/repositories');
     final usecasesDir = Directory('${domainDir.path}/usecases');
+
+    //// Presentation layer
+    final providersDir = Directory('${presentationDir.path}/providers');
 
     // Create the directories
     dataDir.createSync(recursive: true);
@@ -37,6 +42,8 @@ class FlutterCleanArchitectureCLI {
 
     repositoriesDomainDir.createSync(recursive: true);
     usecasesDir.createSync(recursive: true);
+
+    providersDir.createSync(recursive: true);
 
     // Create the files with basic content
     //// Data
@@ -68,6 +75,12 @@ class FlutterCleanArchitectureCLI {
     createFile(
       '${usecasesDir.path}/get_${featureDir}s_usecase.dart',
       getUsecaseTemplate(featureName),
+    );
+
+    //// Presentation layer
+    createFile(
+      '${providersDir.path}/${featureDir}_provider.dart',
+      providerTemplate(featureName),
     );
 
     print('Feature "$featureName" structure created successfully.');
