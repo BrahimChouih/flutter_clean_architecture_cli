@@ -1,10 +1,10 @@
 name: flutter_clean_architecture_cli
-description: "A new Flutter package project."
+description: "A CLI tool to generate clean architecture files for Flutter projects."
 version: 0.0.1
 homepage:
 
 executables:
-  flutter_clean_architecture_cli: bin/flutter_clean_architecture_cli.dart
+  flutter_clean_architecture_cli: flutter_clean_architecture_cli
 
 
 environment:
