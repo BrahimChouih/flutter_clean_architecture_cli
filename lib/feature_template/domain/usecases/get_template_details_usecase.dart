@@ -12,7 +12,7 @@ class Get${featureName.capitalize}DetailsUsecase {
 
   Get${featureName.capitalize}DetailsUsecase(this.repository);
 
-  Future<Either<Failure, ${featureName.capitalize}Model?>> call({
+  Future<Either<Failure, ${featureName.capitalize}Model>> call({
     required int id,
   }) async {
     return await repository.get${featureName.capitalize}(

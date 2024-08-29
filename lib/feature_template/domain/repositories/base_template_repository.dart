@@ -11,7 +11,7 @@ abstract class Base${featureName.capitalize}Repository {
     PaginationOptions paginationOptions = const PaginationOptions(),
   });
 
-  Future<Either<Failure, ${featureName.capitalize}Model?>> get${featureName.capitalize}({
+  Future<Either<Failure, ${featureName.capitalize}Model>> get${featureName.capitalize}({
     required int id,
   });
 

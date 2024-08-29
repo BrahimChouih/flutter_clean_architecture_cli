@@ -27,8 +27,15 @@ Future _runPubget() async {
       "running fvm flutter pub run build_runner build --delete-conflicting-outputs ");
 
   await Process.run(
-    'fvm flutter',
-    ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs'],
+    'fvm',
+    [
+      'flutter',
+      'pub',
+      'run',
+      'build_runner',
+      'build',
+      '--delete-conflicting-outputs',
+    ],
     runInShell: true,
   );
 }

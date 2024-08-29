@@ -47,7 +47,7 @@ class ${featureName.capitalize}Repository implements Base${featureName.capitaliz
   }
 
   @override
-  Future<Either<Failure, ${featureName.capitalize}Model?>> get${featureName.capitalize}({required int id}) async {
+  Future<Either<Failure, ${featureName.capitalize}Model>> get${featureName.capitalize}({required int id}) async {
     try {
       return Right(
         await remoteDataSource.get${featureName.capitalize}(
