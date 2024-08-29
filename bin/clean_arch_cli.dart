@@ -7,29 +7,30 @@ import 'package:flutter_clean_architecture_cli/flutter_clean_architecture_cli_fu
 
 void main(List<String> arguments) {
   final parser = ArgParser()
-    ..addOption('feature', abbr: 'f', help: 'Name of the feature');
+    ..addOption('feature', abbr: 'f', help: 'Name of the feature')
+    ..addFlag('fvm', abbr: 'fvm');
 
   final argResults = parser.parse(arguments);
 
   if (argResults.wasParsed('feature')) {
     final featureName = argResults['feature'];
     FlutterCleanArchitectureCLI.createFeatureStructure(featureName);
-    _runPubget();
+    _runPubget(argResults.flag('fvm'));
   } else {
     print('Please provide a feature name using -f or --feature');
   }
 }
 
-Future _runPubget() async {
+Future _runPubget(bool fvm) async {
   print('\x1B[32mFiles generated successfully\x1B[0m');
 
   print(
       "running fvm flutter pub run build_runner build --delete-conflicting-outputs ");
 
   await Process.run(
-    'fvm',
+    fvm ? 'fvm' : 'flutter',
     [
-      'flutter',
+      if (fvm) 'flutter',
       'pub',
       'run',
       'build_runner',
