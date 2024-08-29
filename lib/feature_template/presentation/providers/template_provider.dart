@@ -53,6 +53,29 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
     changeLoadingState(false);
   }
 
+
+  Future<void> get${featureName.capitalize}Details({
+    required int id,
+    Function(${featureName.capitalize}Model)? onSuccess,
+    Function(Failure)? onError,
+  }) async {
+    changeLoadingState(true);
+
+    (await get${featureName.capitalize}DetailsUsecase(
+      id: id,
+    ))
+        .fold(
+      (l) {
+        if (onError != null) onError(l);
+        // showError(l);
+      },
+      (r) {
+        if (onSuccess != null) onSuccess(r);
+      },
+    );
+    changeLoadingState(false);
+  }
+
   Future<void> create${featureName.capitalize}({
     required ${featureName.capitalize}Model $featureName,
     Function()? onSuccess,
