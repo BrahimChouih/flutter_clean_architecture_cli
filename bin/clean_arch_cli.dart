@@ -7,8 +7,7 @@ import 'package:flutter_clean_architecture_cli/flutter_clean_architecture_cli_fu
 
 void main(List<String> arguments) {
   final parser = ArgParser()
-    ..addOption('feature', abbr: 'f', help: 'Name of the feature')
-    ..addFlag('fvm', abbr: 'fvm');
+    ..addOption('feature', abbr: 'f', help: 'Name of the feature');
 
   final argResults = parser.parse(arguments);
 
