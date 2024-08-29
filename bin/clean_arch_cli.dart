@@ -14,7 +14,7 @@ void main(List<String> arguments) {
   if (argResults.wasParsed('feature')) {
     final featureName = argResults['feature'];
     FlutterCleanArchitectureCLI.createFeatureStructure(featureName);
-    _runPubget(argResults.flag('fvm'));
+    _runPubget(true);
   } else {
     print('Please provide a feature name using -f or --feature');
   }
