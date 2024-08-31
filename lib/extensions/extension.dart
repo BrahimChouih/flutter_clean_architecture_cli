@@ -16,7 +16,7 @@ extension StringCasingExtension on String {
     for (int i = 1; i < words.length; i++) {
       String word = words[i];
       if (word.isNotEmpty) {
-        camelCase += word[0].capitalize;
+        camelCase += word.capitalize;
       }
     }
 
