@@ -20,7 +20,7 @@ class ${featureName.moduleName}Provider extends ProviderTemplate {
     required this.create${featureName.moduleName}Usecase,
   });
 
-  PaginationController<${featureName.moduleName}Model> ${featureName}s =
+  PaginationController<${featureName.moduleName}Model> ${featureName.camelCase}s =
       PaginationController<${featureName.moduleName}Model>();
 
   Future<void> reinit() async {
@@ -81,14 +81,14 @@ class ${featureName.moduleName}Provider extends ProviderTemplate {
   }
 
   Future<void> create${featureName.moduleName}({
-    required ${featureName.moduleName}Model $featureName,
+    required ${featureName.moduleName}Model model,
     Function()? onSuccess,
     Function(Failure)? onError,
   }) async {
     changeLoadingState(true);
     (await create${featureName.moduleName}Usecase(
       input: Create${featureName.moduleName}UsecaseInput(
-        model: $featureName,
+        model: model,
       ),
     ))
         .fold(
@@ -105,14 +105,14 @@ class ${featureName.moduleName}Provider extends ProviderTemplate {
   }
 
   Future<void> update${featureName.moduleName}({
-    required ${featureName.moduleName}Model $featureName,
+    required ${featureName.moduleName}Model model,
     Function()? onSuccess,
     Function(Failure)? onError,
   }) async {
     changeLoadingState(true);
     (await create${featureName.moduleName}Usecase.update(
       input: Create${featureName.moduleName}UsecaseInput(
-        model: $featureName,
+        model: model,
       ),
     ))
         .fold(
