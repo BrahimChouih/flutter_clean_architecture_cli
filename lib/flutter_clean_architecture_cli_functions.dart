@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_clean_architecture_cli/feature_template/data/datasource/base_template_remote_datasource.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/data/datasource/template_remote_datasource.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/data/models/template_model/template_model.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/data/repositories/template_repository.dart';
@@ -36,16 +37,33 @@ class FlutterCleanArchitectureCLI {
     print('Feature "$featureName" structure created successfully.');
   }
 
-  static void createPresentationLayer(String featureName, String layerDir) {
+  static void createDataLayer(String featureName, String layerDir) {
     final featureDir = featureName.toLowerCase();
 
-    final providersDir = Directory('$layerDir/providers');
+    final dataSourcesDir = Directory('$layerDir/datasources');
+    final modelsDir = Directory('$layerDir/models');
+    final repositoriesDataDir = Directory('$layerDir/repositories');
 
-    providersDir.createSync(recursive: true);
+    dataSourcesDir.createSync(recursive: true);
+    modelsDir.createSync(recursive: true);
+    repositoriesDataDir.createSync(recursive: true);
 
+    //// Data
     createFile(
-      '${providersDir.path}/${featureDir}_provider.dart',
-      providerTemplate(featureName),
+      '${dataSourcesDir.path}/base_${featureDir}_remote_datasource.dart',
+      baseDatasourcesTamplate(featureName),
+    );
+    createFile(
+      '${dataSourcesDir.path}/${featureDir}_remote_datasource.dart',
+      datasourcesTamplate(featureName),
+    );
+    createFile(
+      '${modelsDir.path}/${featureDir}_model/${featureDir}_model.dart',
+      modelTemplate(featureName),
+    );
+    createFile(
+      '${repositoriesDataDir.path}/${featureDir}_repository.dart',
+      repositoryDataTemplate(featureName),
     );
   }
 
@@ -77,29 +95,16 @@ class FlutterCleanArchitectureCLI {
     );
   }
 
-  static void createDataLayer(String featureName, String layerDir) {
+  static void createPresentationLayer(String featureName, String layerDir) {
     final featureDir = featureName.toLowerCase();
 
-    final dataSourcesDir = Directory('$layerDir/datasources');
-    final modelsDir = Directory('$layerDir/models');
-    final repositoriesDataDir = Directory('$layerDir/repositories');
+    final providersDir = Directory('$layerDir/providers');
 
-    dataSourcesDir.createSync(recursive: true);
-    modelsDir.createSync(recursive: true);
-    repositoriesDataDir.createSync(recursive: true);
+    providersDir.createSync(recursive: true);
 
-    //// Data
     createFile(
-      '${dataSourcesDir.path}/${featureDir}_remote_datasource.dart',
-      datasourcesTamplate(featureName),
-    );
-    createFile(
-      '${modelsDir.path}/${featureDir}_model/${featureDir}_model.dart',
-      modelTemplate(featureName),
-    );
-    createFile(
-      '${repositoriesDataDir.path}/${featureDir}_repository.dart',
-      repositoryDataTemplate(featureName),
+      '${providersDir.path}/${featureDir}_provider.dart',
+      providerTemplate(featureName),
     );
   }
 
@@ -107,5 +112,20 @@ class FlutterCleanArchitectureCLI {
     final file = File(path);
     file.createSync(recursive: true);
     file.writeAsStringSync(content);
+  }
+
+  static void addToTheEndOfClass(String filePath, String content) async {
+    final file = File(filePath);
+
+    final String fileString = await file.readAsString();
+
+    fileString.trim();
+
+    int lastIndex = fileString.lastIndexOf('}');
+
+    String newFileContent =
+        "${fileString.substring(0, lastIndex)} \n ${content.trim()} \n }";
+
+    file.writeAsString(newFileContent, mode: FileMode.write);
   }
 }

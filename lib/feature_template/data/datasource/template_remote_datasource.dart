@@ -6,21 +6,7 @@ import '/core/failure/failure.dart';
 import '/core/helpers/api_helper.dart';
 import '/core/pagination_controller/pagination_controller.dart';
 import '../../data/models/${featureName}_model/${featureName}_model.dart';
-
-abstract class Base${featureName.capitalize}RemoteDataSource {
-  Future<List<${featureName.capitalize}Model>> get${featureName.capitalize}s({
-    PaginationOptions paginationOptions = const PaginationOptions(),
-  });
-
-  Future<${featureName.capitalize}Model> get${featureName.capitalize}({
-    required int id,
-  });
-
-  Future<${featureName.capitalize}Model?> create${featureName.capitalize}({
-    required ${featureName.capitalize}Model $featureName,
-    bool isUpdate = false,
-  });
-}
+import 'base_${featureName}_remote_datasource.dart';
 
 class ${featureName.capitalize}RemoteDataSource implements Base${featureName.capitalize}RemoteDataSource {
   @override

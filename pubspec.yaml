@@ -1,6 +1,6 @@
 name: flutter_clean_architecture_cli
 description: "A CLI tool to generate clean architecture files for Flutter projects."
-version: 0.0.1
+version: 0.0.3
 homepage:
 
 executables:

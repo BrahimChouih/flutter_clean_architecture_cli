@@ -7,7 +7,7 @@ import '/core/pagination_controller/pagination_controller.dart';
 import '../../data/models/${featureName}_model/${featureName}_model.dart';
 import '../../domain/repositories/base_${featureName}_repository.dart';
 
-import '../datasources/${featureName}_remote_datasource.dart';
+import '../datasources/base_${featureName}_remote_datasource.dart';
 
 class ${featureName.capitalize}Repository implements Base${featureName.capitalize}Repository {
   final Base${featureName.capitalize}RemoteDataSource remoteDataSource;
