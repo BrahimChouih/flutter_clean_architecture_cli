@@ -35,7 +35,7 @@ class ${featureName.moduleName}Provider extends ProviderTemplate {
     Function(Failure)? onError,
   }) async {
     changeLoadingState(true);
-    PaginationController<${featureName.moduleName}Model> controller = ${featureName}s;
+    PaginationController<${featureName.moduleName}Model> controller = ${featureName.camelCase}s;
 
     (await get${featureName.moduleName}sUsecase(
       input: Get${featureName.moduleName}sUsecaseInput(
