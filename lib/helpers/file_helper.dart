@@ -19,15 +19,15 @@ class FileHelper {
     await file.writeAsString(newFileContent, mode: FileMode.write);
   }
 
-  static Future<void> addToTheClass(
+  static void addToTheClass(
     String path, {
     String? endOfClass,
     String? biginOfClass,
     String? importContent,
-  }) async {
+  }) {
     final file = File(path);
 
-    final String fileString = await file.readAsString();
+    final String fileString = file.readAsStringSync();
 
     fileString.trim();
     String newFileContent = fileString;
@@ -39,7 +39,7 @@ class FileHelper {
     if (biginOfClass != null) {
       int lastIndex = newFileContent.indexOf('{');
       newFileContent =
-          "${newFileContent.substring(0, lastIndex)}\n ${biginOfClass.trim()}\n${newFileContent.substring(lastIndex)}";
+          "${newFileContent.substring(0, lastIndex)}\n { ${biginOfClass.trim()}\n${newFileContent.substring(lastIndex)}";
     }
 
     if (endOfClass != null) {
@@ -48,6 +48,6 @@ class FileHelper {
           "${newFileContent.substring(0, lastIndex)} \n ${endOfClass.trim()} \n}";
     }
 
-    await file.writeAsString(newFileContent, mode: FileMode.write);
+    file.writeAsStringSync(newFileContent, mode: FileMode.write);
   }
 }

@@ -48,7 +48,7 @@ class FlutterCleanArchitectureCLIUseCase {
       usecaseTemplate(featureName, usecaseName),
     );
 
-    await FileHelper.addToTheClass(
+    FileHelper.addToTheClass(
       repositoriesDomainDir,
       endOfClass: repositoryFunctionDomainTemplate(featureName, usecaseName),
       importContent:
@@ -68,21 +68,21 @@ class FlutterCleanArchitectureCLIUseCase {
     final datasourceDir =
         '$layerDir/datasources/${featureDir}_remote_datasource.dart';
 
-    await FileHelper.addToTheClass(
+    FileHelper.addToTheClass(
       repositoriesDomainDir,
       endOfClass: repositoryFunctionDataTemplate(featureName, usecaseName),
       importContent:
           "import '../../domain/usecases/${usecaseName.snakeCase}_usecase.dart';",
     );
 
-    await FileHelper.addToTheClass(
+    FileHelper.addToTheClass(
       baseDatasourceDir,
       endOfClass: baseDatasourcesFunctionTamplate(featureName, usecaseName),
       importContent:
           "import '../../domain/usecases/${usecaseName.snakeCase}_usecase.dart';",
     );
 
-    await FileHelper.addToTheClass(
+    FileHelper.addToTheClass(
       datasourceDir,
       endOfClass: datasourcesFunctionTamplate(featureName, usecaseName),
       importContent:
@@ -95,7 +95,7 @@ class FlutterCleanArchitectureCLIUseCase {
 
     final providerDir = '$layerDir/providers/${featureDir}_provider.dart';
 
-    await FileHelper.addToTheClass(
+    FileHelper.addToTheClass(
       providerDir,
       biginOfClass:
           'final ${usecaseName.capitalize}Usecase ${usecaseName}Usecase;',
