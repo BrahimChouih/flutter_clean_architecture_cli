@@ -19,7 +19,11 @@ class FileHelper {
     await file.writeAsString(newFileContent, mode: FileMode.write);
   }
 
-  static Future<void> addToTheEndOfClass(String path, String content) async {
+  static Future<void> addToTheEndOfClass(
+    String path,
+    String content, {
+    String? importContent,
+  }) async {
     final file = File(path);
 
     final String fileString = await file.readAsString();
@@ -28,7 +32,7 @@ class FileHelper {
 
     int lastIndex = fileString.lastIndexOf('}');
     String newFileContent =
-        "${fileString.substring(0, lastIndex)} \n ${content.trim()} \n}";
+        "${importContent?.trim()}\n${fileString.substring(0, lastIndex)} \n ${content.trim()} \n}";
 
     await file.writeAsString(newFileContent, mode: FileMode.write);
   }

@@ -46,11 +46,8 @@ class FlutterCleanArchitectureCLIUseCase {
     await FileHelper.addToTheEndOfClass(
       repositoriesDomainDir,
       repositoryFunctionDomainTemplate(featureName, usecaseName),
-    );
-
-    await FileHelper.addToTheBeginOfFile(
-      repositoriesDomainDir,
-      "import '../usecases/${usecaseName.snakeCase}_usecase.dart';",
+      importContent:
+          "import '../usecases/${usecaseName.snakeCase}_usecase.dart';",
     );
   }
 }
