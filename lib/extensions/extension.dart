@@ -1,5 +1,8 @@
 extension StringCasingExtension on String {
+  String get moduleName => camelCase.capitalize;
+
   String get capitalize => this[0].toUpperCase() + substring(1);
+
   String get camelCase {
     // Remove any non-alphanumeric characters except underscores
     List<String> words = split(RegExp(r'[_\s]+'));

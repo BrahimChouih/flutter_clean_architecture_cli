@@ -10,10 +10,10 @@ import '../../domain/usecases/create_${featureName}_usecase.dart';
 import '../../domain/usecases/get_${featureName}_details_usecase.dart';
 import '../../domain/usecases/get_${featureName}s_usecase.dart';
 
-class ${featureName.capitalize}RemoteDataSource implements Base${featureName.capitalize}RemoteDataSource {
+class ${featureName.moduleName}RemoteDataSource implements Base${featureName.moduleName}RemoteDataSource {
   @override
-  Future<Create${featureName.capitalize}UsecaseOutput?> create${featureName.capitalize}({
-    required Create${featureName.capitalize}UsecaseInput input,
+  Future<Create${featureName.moduleName}UsecaseOutput?> create${featureName.moduleName}({
+    required Create${featureName.moduleName}UsecaseInput input,
     bool isUpdate = false,
   }) async {
     dynamic responceData;
@@ -30,14 +30,14 @@ class ${featureName.capitalize}RemoteDataSource implements Base${featureName.cap
     }
     return responceData == null
         ? null
-        : Create${featureName.capitalize}UsecaseOutput(
-            model: ${featureName.capitalize}Model.fromJson(responceData),
+        : Create${featureName.moduleName}UsecaseOutput(
+            model: ${featureName.moduleName}Model.fromJson(responceData),
           );
   }
 
   @override
-  Future<Get${featureName.capitalize}sUsecaseOutput> get${featureName.capitalize}s({
-    Get${featureName.capitalize}sUsecaseInput input = const Get${featureName.capitalize}sUsecaseInput(),
+  Future<Get${featureName.moduleName}sUsecaseOutput> get${featureName.moduleName}s({
+    Get${featureName.moduleName}sUsecaseInput input = const Get${featureName.moduleName}sUsecaseInput(),
   }) async {
     dynamic responceData = await APIHelper.get(
       endpoint: APIConfigs.transactions,
@@ -45,27 +45,27 @@ class ${featureName.capitalize}RemoteDataSource implements Base${featureName.cap
     );
 
     if (responceData != null) {
-      final List<${featureName.capitalize}Model> data = [];
+      final List<${featureName.moduleName}Model> data = [];
       for (var element in (responceData as List)) {
-        data.add(${featureName.capitalize}Model.fromJson(element));
+        data.add(${featureName.moduleName}Model.fromJson(element));
       }
-      return Get${featureName.capitalize}sUsecaseOutput(data: data);
+      return Get${featureName.moduleName}sUsecaseOutput(data: data);
     } else {
       throw Failure.fromJson(responceData ?? {});
     }
   }
 
   @override
-  Future<Get${featureName.capitalize}DetailsUsecaseOutput> get${featureName.capitalize}({
-    required Get${featureName.capitalize}DetailsUsecaseInput input,
+  Future<Get${featureName.moduleName}DetailsUsecaseOutput> get${featureName.moduleName}({
+    required Get${featureName.moduleName}DetailsUsecaseInput input,
   }) async {
     dynamic responceData = await APIHelper.get(
       endpoint: '\${APIConfigs.transactions}/\${input.id}',
     );
 
     if (responceData != null) {
-      return Get${featureName.capitalize}DetailsUsecaseOutput(
-        data: ${featureName.capitalize}Model.fromJson(responceData),
+      return Get${featureName.moduleName}DetailsUsecaseOutput(
+        data: ${featureName.moduleName}Model.fromJson(responceData),
       );
     } else {
       throw Failure.fromJson(responceData ?? {});

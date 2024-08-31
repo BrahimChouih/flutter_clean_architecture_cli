@@ -7,18 +7,18 @@ part '${featureName}_model.freezed.dart';
 part '${featureName}_model.g.dart';
 
 @freezed
-class ${featureName.capitalize}Model with _\$${featureName.capitalize}Model {
-  const ${featureName.capitalize}Model._();
+class ${featureName.moduleName}Model with _\$${featureName.moduleName}Model {
+  const ${featureName.moduleName}Model._();
 
   @JsonSerializable(
     explicitToJson: true,
     includeIfNull: false,
   )
-  factory ${featureName.capitalize}Model({
+  factory ${featureName.moduleName}Model({
     int? id,
-  }) = _${featureName.capitalize}Model;
+  }) = _${featureName.moduleName}Model;
 
-  factory ${featureName.capitalize}Model.fromJson(Map<String, dynamic> json) =>
-      _\$${featureName.capitalize}ModelFromJson(json);
+  factory ${featureName.moduleName}Model.fromJson(Map<String, dynamic> json) =>
+      _\$${featureName.moduleName}ModelFromJson(json);
 }
 """;

@@ -10,19 +10,19 @@ import '../../domain/usecases/get_${featureName}s_usecase.dart';
 
 import '../datasources/base_${featureName}_remote_datasource.dart';
 
-class ${featureName.capitalize}Repository implements Base${featureName.capitalize}Repository {
-  final Base${featureName.capitalize}RemoteDataSource remoteDataSource;
+class ${featureName.moduleName}Repository implements Base${featureName.moduleName}Repository {
+  final Base${featureName.moduleName}RemoteDataSource remoteDataSource;
 
-  ${featureName.capitalize}Repository({required this.remoteDataSource});
+  ${featureName.moduleName}Repository({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, Create${featureName.capitalize}UsecaseOutput?>> create${featureName.capitalize}({
-    required Create${featureName.capitalize}UsecaseInput input,
+  Future<Either<Failure, Create${featureName.moduleName}UsecaseOutput?>> create${featureName.moduleName}({
+    required Create${featureName.moduleName}UsecaseInput input,
     bool isUpdate = false,
   }) async {
     try {
       return Right(
-        await remoteDataSource.create${featureName.capitalize}(
+        await remoteDataSource.create${featureName.moduleName}(
           input: input,
           isUpdate: isUpdate,
         ),
@@ -33,12 +33,12 @@ class ${featureName.capitalize}Repository implements Base${featureName.capitaliz
   }
 
   @override
-  Future<Either<Failure, Get${featureName.capitalize}sUsecaseOutput>> get${featureName.capitalize}s({
-    Get${featureName.capitalize}sUsecaseInput input = const Get${featureName.capitalize}sUsecaseInput(),
+  Future<Either<Failure, Get${featureName.moduleName}sUsecaseOutput>> get${featureName.moduleName}s({
+    Get${featureName.moduleName}sUsecaseInput input = const Get${featureName.moduleName}sUsecaseInput(),
   }) async {
     try {
       return Right(
-        await remoteDataSource.get${featureName.capitalize}s(
+        await remoteDataSource.get${featureName.moduleName}s(
           input: input,
         ),
       );
@@ -48,12 +48,12 @@ class ${featureName.capitalize}Repository implements Base${featureName.capitaliz
   }
 
   @override
-  Future<Either<Failure, Get${featureName.capitalize}DetailsUsecaseOutput>> get${featureName.capitalize}({
-    required Get${featureName.capitalize}DetailsUsecaseInput input,
+  Future<Either<Failure, Get${featureName.moduleName}DetailsUsecaseOutput>> get${featureName.moduleName}({
+    required Get${featureName.moduleName}DetailsUsecaseInput input,
   }) async {
     try {
       return Right(
-        await remoteDataSource.get${featureName.capitalize}(
+        await remoteDataSource.get${featureName.moduleName}(
           input: input,
         ),
       );

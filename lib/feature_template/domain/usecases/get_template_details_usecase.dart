@@ -7,33 +7,33 @@ import '../../domain/repositories/base_${featureName}_repository.dart';
 
 import '/core/failure/failure.dart';
 
-class Get${featureName.capitalize}DetailsUsecase {
-  final Base${featureName.capitalize}Repository repository;
+class Get${featureName.moduleName}DetailsUsecase {
+  final Base${featureName.moduleName}Repository repository;
 
-  Get${featureName.capitalize}DetailsUsecase(this.repository);
+  Get${featureName.moduleName}DetailsUsecase(this.repository);
 
-  Future<Either<Failure, Get${featureName.capitalize}DetailsUsecaseOutput>> call({
-    required Get${featureName.capitalize}DetailsUsecaseInput
+  Future<Either<Failure, Get${featureName.moduleName}DetailsUsecaseOutput>> call({
+    required Get${featureName.moduleName}DetailsUsecaseInput
         input,
   }) async {
-    return await repository.get${featureName.capitalize}(
+    return await repository.get${featureName.moduleName}(
       input: input,
     );
   }
 }
 
-class Get${featureName.capitalize}DetailsUsecaseInput {
+class Get${featureName.moduleName}DetailsUsecaseInput {
   final int? id;
 
-  const Get${featureName.capitalize}DetailsUsecaseInput({
+  const Get${featureName.moduleName}DetailsUsecaseInput({
     this.id,
   });
 }
 
-class Get${featureName.capitalize}DetailsUsecaseOutput {
-  final ${featureName.capitalize}Model data;
+class Get${featureName.moduleName}DetailsUsecaseOutput {
+  final ${featureName.moduleName}Model data;
 
-  const Get${featureName.capitalize}DetailsUsecaseOutput({required this.data});
+  const Get${featureName.moduleName}DetailsUsecaseOutput({required this.data});
 }
 
 """;

@@ -8,32 +8,32 @@ import '../../domain/repositories/base_${featureName}_repository.dart';
 
 import '/core/failure/failure.dart';
 
-class Get${featureName.capitalize}sUsecase {
-  final Base${featureName.capitalize}Repository repository;
+class Get${featureName.moduleName}sUsecase {
+  final Base${featureName.moduleName}Repository repository;
 
-  Get${featureName.capitalize}sUsecase(this.repository);
+  Get${featureName.moduleName}sUsecase(this.repository);
 
-  Future<Either<Failure, Get${featureName.capitalize}sUsecaseOutput>> call({
-    Get${featureName.capitalize}sUsecaseInput input =
-        const Get${featureName.capitalize}sUsecaseInput(),
+  Future<Either<Failure, Get${featureName.moduleName}sUsecaseOutput>> call({
+    Get${featureName.moduleName}sUsecaseInput input =
+        const Get${featureName.moduleName}sUsecaseInput(),
   }) async {
-    return await repository.get${featureName.capitalize}s(
+    return await repository.get${featureName.moduleName}s(
       input: input,
     );
   }
 }
 
-class Get${featureName.capitalize}sUsecaseInput {
+class Get${featureName.moduleName}sUsecaseInput {
   final PaginationOptions paginationOptions;
 
-  const Get${featureName.capitalize}sUsecaseInput({
+  const Get${featureName.moduleName}sUsecaseInput({
     this.paginationOptions = const PaginationOptions(),
   });
 }
 
-class Get${featureName.capitalize}sUsecaseOutput {
-  final List<${featureName.capitalize}Model> data;
+class Get${featureName.moduleName}sUsecaseOutput {
+  final List<${featureName.moduleName}Model> data;
 
-  const Get${featureName.capitalize}sUsecaseOutput({this.data = const []});
+  const Get${featureName.moduleName}sUsecaseOutput({this.data = const []});
 }
 """;

@@ -6,7 +6,7 @@ String providerFunctionTamplate(
 ) =>
     """
   Future<void> $usecaseName({
-    required ${usecaseName.capitalize}UsecaseInput ${usecaseName}UsecaseInput,
+    required ${usecaseName.moduleName}UsecaseInput ${usecaseName}UsecaseInput,
     Function()? onSuccess,
     Function(Failure)? onError,
   }) async {

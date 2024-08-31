@@ -9,36 +9,36 @@ import '../../domain/usecases/create_${featureName}_usecase.dart';
 import '../../domain/usecases/get_${featureName}_details_usecase.dart';
 import '../../domain/usecases/get_${featureName}s_usecase.dart';
 
-class ${featureName.capitalize}Provider extends ProviderTemplate {
-  final Get${featureName.capitalize}sUsecase get${featureName.capitalize}sUsecase;
-  final Get${featureName.capitalize}DetailsUsecase get${featureName.capitalize}DetailsUsecase;
-  final Create${featureName.capitalize}Usecase create${featureName.capitalize}Usecase;
+class ${featureName.moduleName}Provider extends ProviderTemplate {
+  final Get${featureName.moduleName}sUsecase get${featureName.moduleName}sUsecase;
+  final Get${featureName.moduleName}DetailsUsecase get${featureName.moduleName}DetailsUsecase;
+  final Create${featureName.moduleName}Usecase create${featureName.moduleName}Usecase;
 
-  ${featureName.capitalize}Provider({
-    required this.get${featureName.capitalize}sUsecase,
-    required this.get${featureName.capitalize}DetailsUsecase,
-    required this.create${featureName.capitalize}Usecase,
+  ${featureName.moduleName}Provider({
+    required this.get${featureName.moduleName}sUsecase,
+    required this.get${featureName.moduleName}DetailsUsecase,
+    required this.create${featureName.moduleName}Usecase,
   });
 
-  PaginationController<${featureName.capitalize}Model> ${featureName}s =
-      PaginationController<${featureName.capitalize}Model>();
+  PaginationController<${featureName.moduleName}Model> ${featureName}s =
+      PaginationController<${featureName.moduleName}Model>();
 
   Future<void> reinit() async {
     await Future.wait([
-      get${featureName.capitalize}s(reinit: true),
+      get${featureName.moduleName}s(reinit: true),
     ]);
   }
 
-  Future<void> get${featureName.capitalize}s({
+  Future<void> get${featureName.moduleName}s({
     bool reinit = false,
     Function()? onSuccess,
     Function(Failure)? onError,
   }) async {
     changeLoadingState(true);
-    PaginationController<${featureName.capitalize}Model> controller = ${featureName}s;
+    PaginationController<${featureName.moduleName}Model> controller = ${featureName}s;
 
-    (await get${featureName.capitalize}sUsecase(
-      input: Get${featureName.capitalize}sUsecaseInput(
+    (await get${featureName.moduleName}sUsecase(
+      input: Get${featureName.moduleName}sUsecaseInput(
         paginationOptions: controller.paginationOptions,
       ),
     ))
@@ -56,15 +56,15 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
     changeLoadingState(false);
   }
 
-  Future<void> get${featureName.capitalize}Details({
+  Future<void> get${featureName.moduleName}Details({
     required int id,
-    Function(${featureName.capitalize}Model)? onSuccess,
+    Function(${featureName.moduleName}Model)? onSuccess,
     Function(Failure)? onError,
   }) async {
     changeLoadingState(true);
 
-    (await get${featureName.capitalize}DetailsUsecase(
-      input: Get${featureName.capitalize}DetailsUsecaseInput(
+    (await get${featureName.moduleName}DetailsUsecase(
+      input: Get${featureName.moduleName}DetailsUsecaseInput(
         id: id,
       ),
     ))
@@ -80,14 +80,14 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
     changeLoadingState(false);
   }
 
-  Future<void> create${featureName.capitalize}({
-    required ${featureName.capitalize}Model $featureName,
+  Future<void> create${featureName.moduleName}({
+    required ${featureName.moduleName}Model $featureName,
     Function()? onSuccess,
     Function(Failure)? onError,
   }) async {
     changeLoadingState(true);
-    (await create${featureName.capitalize}Usecase(
-      input: Create${featureName.capitalize}UsecaseInput(
+    (await create${featureName.moduleName}Usecase(
+      input: Create${featureName.moduleName}UsecaseInput(
         model: $featureName,
       ),
     ))
@@ -97,21 +97,21 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
         showError(l);
       },
       (r) async {
-        await get${featureName.capitalize}s();
+        await get${featureName.moduleName}s();
         if (onSuccess != null) onSuccess();
       },
     );
     changeLoadingState(false);
   }
 
-  Future<void> update${featureName.capitalize}({
-    required ${featureName.capitalize}Model $featureName,
+  Future<void> update${featureName.moduleName}({
+    required ${featureName.moduleName}Model $featureName,
     Function()? onSuccess,
     Function(Failure)? onError,
   }) async {
     changeLoadingState(true);
-    (await create${featureName.capitalize}Usecase.update(
-      input: Create${featureName.capitalize}UsecaseInput(
+    (await create${featureName.moduleName}Usecase.update(
+      input: Create${featureName.moduleName}UsecaseInput(
         model: $featureName,
       ),
     ))
@@ -121,7 +121,7 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
         showError(l);
       },
       (r) async {
-        await get${featureName.capitalize}s();
+        await get${featureName.moduleName}s();
         if (onSuccess != null) onSuccess();
       },
     );

@@ -6,8 +6,8 @@ String datasourcesFunctionTamplate(
 ) =>
     """
   @override
-  Future<${usecaseName.capitalize}UsecaseOutput> $usecaseName({
-    required ${usecaseName.capitalize}UsecaseInput ${usecaseName}UsecaseInput,
+  Future<${usecaseName.moduleName}UsecaseOutput> $usecaseName({
+    required ${usecaseName.moduleName}UsecaseInput ${usecaseName}UsecaseInput,
   }) async {
     dynamic responceData = await APIHelper.post(
       endpoint: APIConfigs.${featureName}s,
@@ -15,7 +15,7 @@ String datasourcesFunctionTamplate(
     );
 
     if (responceData != null) {
-      return ${usecaseName.capitalize}UsecaseOutput.fromJson(responceData);
+      return ${usecaseName.moduleName}UsecaseOutput.fromJson(responceData);
     } else {
       throw Failure.fromJson(responceData ?? {});
     }

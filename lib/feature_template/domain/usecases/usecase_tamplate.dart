@@ -6,13 +6,13 @@ import '../../domain/repositories/base_${featureName}_repository.dart';
 
 import '/core/failure/failure.dart';
 
-class ${usecaseName.capitalize}Usecase {
-  final Base${featureName.capitalize}Repository repository;
+class ${usecaseName.moduleName}Usecase {
+  final Base${featureName.moduleName}Repository repository;
 
-  ${usecaseName.capitalize}Usecase(this.repository);
+  ${usecaseName.moduleName}Usecase(this.repository);
 
-  Future<Either<Failure, ${usecaseName.capitalize}UsecaseOutput>> call({
-    required ${usecaseName.capitalize}UsecaseInput ${usecaseName}UsecaseInput,
+  Future<Either<Failure, ${usecaseName.moduleName}UsecaseOutput>> call({
+    required ${usecaseName.moduleName}UsecaseInput ${usecaseName}UsecaseInput,
   }) async {
     return await repository.$usecaseName(
       ${usecaseName}UsecaseInput: ${usecaseName}UsecaseInput,
@@ -21,22 +21,22 @@ class ${usecaseName.capitalize}Usecase {
 }
 
 
-class ${usecaseName.capitalize}UsecaseInput {
+class ${usecaseName.moduleName}UsecaseInput {
   final int id;
 
-  ${usecaseName.capitalize}UsecaseInput({required this.id});
+  ${usecaseName.moduleName}UsecaseInput({required this.id});
 
   Map<String, dynamic> toJson() => {
         'id': id,
       };
 }
 
-class ${usecaseName.capitalize}UsecaseOutput {
+class ${usecaseName.moduleName}UsecaseOutput {
   int? id;
 
-  ${usecaseName.capitalize}UsecaseOutput({this.id});
+  ${usecaseName.moduleName}UsecaseOutput({this.id});
 
-  ${usecaseName.capitalize}UsecaseOutput.fromJson(Map<String, dynamic> json) {
+  ${usecaseName.moduleName}UsecaseOutput.fromJson(Map<String, dynamic> json) {
     id = json['id'];
   }
 }
