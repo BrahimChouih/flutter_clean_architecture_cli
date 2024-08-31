@@ -28,7 +28,7 @@ class ${featureName.capitalize}RemoteDataSource implements Base${featureName.cap
     required ${featureName.capitalize}Model $featureName,
     bool isUpdate = false,
   }) async {
-    Map<String, dynamic>? responceData;
+    dynamic responceData;
     if (isUpdate) {
       responceData = await APIHelper.post(
         endpoint: '\${APIConfigs.${featureName}s}/\${$featureName.id}',
@@ -47,7 +47,7 @@ class ${featureName.capitalize}RemoteDataSource implements Base${featureName.cap
   Future<List<${featureName.capitalize}Model>> get${featureName.capitalize}s({
     PaginationOptions paginationOptions = const PaginationOptions(),
   }) async {
-    Map<String, dynamic>? responceData = await APIHelper.get(
+    dynamic responceData = await APIHelper.get(
       endpoint: APIConfigs.${featureName}s,
       queryParameters: {}..addAll(paginationOptions.toJson()),
     );
@@ -67,7 +67,7 @@ class ${featureName.capitalize}RemoteDataSource implements Base${featureName.cap
   Future<${featureName.capitalize}Model> get${featureName.capitalize}({
     required int id,
   }) async {
-    Map<String, dynamic>? responceData = await APIHelper.get(
+    dynamic responceData = await APIHelper.get(
       endpoint: '\${APIConfigs.${featureName}s}/\$id',
     );
 
