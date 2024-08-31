@@ -1,4 +1,4 @@
-import 'package:flutter_clean_architecture_cli/extension.dart';
+import 'package:flutter_clean_architecture_cli/extensions/extension.dart';
 
 String datasourcesTamplate(String featureName) => """
 import '/core/configs/api_config.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter_clean_architecture_cli/extension.dart';
+import 'package:flutter_clean_architecture_cli/extensions/extension.dart';
 
 String baseDatasourcesTamplate(String featureName) => """
 import '/core/pagination_controller/pagination_controller.dart';

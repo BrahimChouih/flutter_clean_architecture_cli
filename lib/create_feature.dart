@@ -9,36 +9,37 @@ import 'package:flutter_clean_architecture_cli/feature_template/domain/usecases/
 import 'package:flutter_clean_architecture_cli/feature_template/domain/usecases/get_template_details_usecase.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/domain/usecases/get_templates_usecase.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/presentation/providers/template_provider.dart';
+import 'package:flutter_clean_architecture_cli/helpers/file_helper.dart';
 
-class FlutterCleanArchitectureCLI {
+class FlutterCleanArchitectureCLIFeature {
+  static String featureName = '';
+  static String featureDir = '';
+  static String baseDir = '';
+
   static void createFeatureStructure(String featureName) {
     // Convert the feature name to lowercase for directory names
-    final featureDir = featureName.toLowerCase();
+    FlutterCleanArchitectureCLIFeature.featureName = featureName;
+    FlutterCleanArchitectureCLIFeature.featureDir = featureName.toLowerCase();
 
     // Define the base paths for each layer
-    final baseDir = Directory('lib/features/$featureDir');
-    final dataDir = Directory('${baseDir.path}/data');
-    final domainDir = Directory('${baseDir.path}/domain');
-    final presentationDir = Directory('${baseDir.path}/presentation');
-
-    dataDir.createSync(recursive: true);
-    domainDir.createSync(recursive: true);
-    presentationDir.createSync(recursive: true);
+    baseDir = 'lib/features/$featureDir';
 
     //// Data layer
-    createDataLayer(featureName, dataDir.path);
+    createDataLayer();
 
     //// Domain layer
-    createDomainLayer(featureName, domainDir.path);
+    createDomainLayer();
 
     //// Presentation layer
-    createPresentationLayer(featureName, presentationDir.path);
+    createPresentationLayer();
 
     print('Feature "$featureName" structure created successfully.');
   }
 
-  static void createDataLayer(String featureName, String layerDir) {
-    final featureDir = featureName.toLowerCase();
+  static void createDataLayer() {
+    final dataDir = Directory('$baseDir/data');
+    dataDir.createSync(recursive: true);
+    final layerDir = dataDir.path;
 
     final dataSourcesDir = Directory('$layerDir/datasources');
     final modelsDir = Directory('$layerDir/models');
@@ -49,26 +50,28 @@ class FlutterCleanArchitectureCLI {
     repositoriesDataDir.createSync(recursive: true);
 
     //// Data
-    createFile(
+    FileHelper.createFile(
       '${dataSourcesDir.path}/base_${featureDir}_remote_datasource.dart',
       baseDatasourcesTamplate(featureName),
     );
-    createFile(
+    FileHelper.createFile(
       '${dataSourcesDir.path}/${featureDir}_remote_datasource.dart',
       datasourcesTamplate(featureName),
     );
-    createFile(
+    FileHelper.createFile(
       '${modelsDir.path}/${featureDir}_model/${featureDir}_model.dart',
       modelTemplate(featureName),
     );
-    createFile(
+    FileHelper.createFile(
       '${repositoriesDataDir.path}/${featureDir}_repository.dart',
       repositoryDataTemplate(featureName),
     );
   }
 
-  static void createDomainLayer(String featureName, String layerDir) {
-    final featureDir = featureName.toLowerCase();
+  static void createDomainLayer() {
+    final domainDir = Directory('$baseDir/domain');
+    domainDir.createSync(recursive: true);
+    final layerDir = domainDir.path;
 
     final repositoriesDomainDir = Directory('$layerDir/repositories');
     final usecasesDir = Directory('$layerDir/usecases');
@@ -77,55 +80,36 @@ class FlutterCleanArchitectureCLI {
     usecasesDir.createSync(recursive: true);
 
     //// Domain
-    createFile(
+    FileHelper.createFile(
       '${repositoriesDomainDir.path}/base_${featureDir}_repository.dart',
       repositoryDomainTemplate(featureName),
     );
-    createFile(
+    FileHelper.createFile(
       '${usecasesDir.path}/create_${featureDir}_usecase.dart',
       createUseCaseTemplate(featureName),
     );
-    createFile(
+    FileHelper.createFile(
       '${usecasesDir.path}/get_${featureDir}_details_usecase.dart',
       getDetailsUseCaseTemplate(featureName),
     );
-    createFile(
+    FileHelper.createFile(
       '${usecasesDir.path}/get_${featureDir}s_usecase.dart',
       getUsecaseTemplate(featureName),
     );
   }
 
-  static void createPresentationLayer(String featureName, String layerDir) {
-    final featureDir = featureName.toLowerCase();
+  static void createPresentationLayer() {
+    final presentationDir = Directory('$baseDir/presentation');
+    presentationDir.createSync(recursive: true);
+    final layerDir = presentationDir.path;
 
     final providersDir = Directory('$layerDir/providers');
 
     providersDir.createSync(recursive: true);
 
-    createFile(
+    FileHelper.createFile(
       '${providersDir.path}/${featureDir}_provider.dart',
       providerTemplate(featureName),
     );
-  }
-
-  static void createFile(String path, String content) {
-    final file = File(path);
-    file.createSync(recursive: true);
-    file.writeAsStringSync(content);
-  }
-
-  static void addToTheEndOfClass(String filePath, String content) async {
-    final file = File(filePath);
-
-    final String fileString = await file.readAsString();
-
-    fileString.trim();
-
-    int lastIndex = fileString.lastIndexOf('}');
-
-    String newFileContent =
-        "${fileString.substring(0, lastIndex)} \n ${content.trim()} \n }";
-
-    file.writeAsString(newFileContent, mode: FileMode.write);
   }
 }

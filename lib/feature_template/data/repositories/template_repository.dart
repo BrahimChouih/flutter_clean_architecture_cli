@@ -1,4 +1,4 @@
-import 'package:flutter_clean_architecture_cli/extension.dart';
+import 'package:flutter_clean_architecture_cli/extensions/extension.dart';
 
 String repositoryDataTemplate(String featureName) => """
 import 'package:dartz/dartz.dart';

@@ -1,20 +1,22 @@
 #!/usr/bin/env dart
 
 import 'dart:io';
-
-import 'package:args/args.dart';
-import 'package:flutter_clean_architecture_cli/flutter_clean_architecture_cli_functions.dart';
+import 'package:flutter_clean_architecture_cli/create_feature.dart';
+import 'package:flutter_clean_architecture_cli/create_usecase.dart';
 
 void main(List<String> arguments) {
-  final parser = ArgParser()
-    ..addOption('feature', abbr: 'f', help: 'Name of the feature');
+  final String functionName = arguments.first;
 
-  final argResults = parser.parse(arguments);
+  /// -feature or -usecase
 
-  if (argResults.wasParsed('feature')) {
-    final featureName = argResults['feature'];
-    FlutterCleanArchitectureCLI.createFeatureStructure(featureName);
+  if (functionName == '-feature') {
+    final featureName = arguments[1];
+    FlutterCleanArchitectureCLIFeature.createFeatureStructure(featureName);
     _runPubget(true);
+  } else if (functionName == '-usecase') {
+    final featureName = arguments[2];
+    final usecaseName = arguments[1];
+    FlutterCleanArchitectureCLIUseCase.createUsecase(featureName, usecaseName);
   } else {
     print('Please provide a feature name using -f or --feature');
   }
