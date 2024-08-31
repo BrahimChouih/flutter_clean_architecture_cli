@@ -7,31 +7,29 @@ class FileHelper {
     file.writeAsStringSync(content);
   }
 
-  static void addToTheBeginOfFile(String path, String content) {
+  static Future<void> addToTheBeginOfFile(String path, String content) async {
     final file = File(path);
 
-    final String fileString = file.readAsStringSync();
+    final String fileString = await file.readAsString();
 
     fileString.trim();
 
     String newFileContent = "${content.trim()}\n$fileString}";
 
-    file.writeAsStringSync(newFileContent, mode: FileMode.write);
+    await file.writeAsString(newFileContent, mode: FileMode.write);
   }
 
-  static void addToTheEndOfClass(String path, String content) {
+  static Future<void> addToTheEndOfClass(String path, String content) async {
     final file = File(path);
 
-    final String fileString = file.readAsStringSync();
+    final String fileString = await file.readAsString();
 
     fileString.trim();
 
     int lastIndex = fileString.lastIndexOf('}');
-    print(lastIndex);
-    print(fileString.substring(0, lastIndex - 1));
     String newFileContent =
-        "${fileString.substring(0, lastIndex - 1)} \n ${content.trim()} \n}";
+        "${fileString.substring(0, lastIndex)} \n ${content.trim()} \n}";
 
-    file.writeAsStringSync(newFileContent, mode: FileMode.write);
+    await file.writeAsString(newFileContent, mode: FileMode.write);
   }
 }
