@@ -29,7 +29,7 @@ class FileHelper {
     int lastIndex = fileString.lastIndexOf('}');
 
     String newFileContent =
-        "${fileString.substring(0, lastIndex)} \n ${content.trim()} \n}";
+        "${fileString.substring(0, lastIndex - 1)} \n ${content.trim()} \n}";
 
     file.writeAsString(newFileContent, mode: FileMode.write);
   }
