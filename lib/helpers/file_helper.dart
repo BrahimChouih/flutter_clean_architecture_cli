@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter_clean_architecture_cli/extensions/extension.dart';
 
 class FileHelper {
   static void createFile(String path, String content) {
@@ -32,14 +33,14 @@ class FileHelper {
     fileString.trim();
     String newFileContent = fileString;
 
-    final beginClassIndex = newFileContent.lastIndexOf('{');
-    final endClassIndex = newFileContent.lastIndexOf('}');
+    final beginClassIndex = newFileContent.whereFirst('{');
+    final endClassIndex = newFileContent.whereLast('}');
 
     newFileContent = """
 ${importContent?.trim()}
 ${newFileContent.substring(0, beginClassIndex)} {
 ${biginOfClass?.trim()}
-${newFileContent.substring(beginClassIndex, endClassIndex)}
+${newFileContent.substring(beginClassIndex + 1, endClassIndex)}
 ${endOfClass?.trim()}
 }
 """;
