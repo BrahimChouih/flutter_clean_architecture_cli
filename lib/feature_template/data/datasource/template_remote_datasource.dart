@@ -4,7 +4,6 @@ String datasourcesTamplate(String featureName) => """
 import '/core/configs/api_config.dart';
 import '/core/failure/failure.dart';
 import '/core/helpers/api_helper.dart';
-import '/core/pagination_controller/pagination_controller.dart';
 import '../../data/models/${featureName}_model/${featureName}_model.dart';
 import 'base_${featureName}_remote_datasource.dart';
 import '../../domain/usecases/create_${featureName}_usecase.dart';
@@ -32,7 +31,7 @@ class ${featureName.capitalize}RemoteDataSource implements Base${featureName.cap
     return responceData == null
         ? null
         : Create${featureName.capitalize}UsecaseOutput(
-            data: ${featureName.capitalize}Model.fromJson(responceData),
+            model: ${featureName.capitalize}Model.fromJson(responceData),
           );
   }
 
