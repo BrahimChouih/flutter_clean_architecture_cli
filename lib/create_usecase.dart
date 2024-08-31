@@ -48,9 +48,9 @@ class FlutterCleanArchitectureCLIUseCase {
       usecaseTemplate(featureName, usecaseName),
     );
 
-    await FileHelper.addToTheEndOfClass(
+    await FileHelper.addToTheClass(
       repositoriesDomainDir,
-      repositoryFunctionDomainTemplate(featureName, usecaseName),
+      endOfClass: repositoryFunctionDomainTemplate(featureName, usecaseName),
       importContent:
           "import '../usecases/${usecaseName.snakeCase}_usecase.dart';",
     );
@@ -68,23 +68,23 @@ class FlutterCleanArchitectureCLIUseCase {
     final datasourceDir =
         '$layerDir/datasources/${featureDir}_remote_datasource.dart';
 
-    await FileHelper.addToTheEndOfClass(
+    await FileHelper.addToTheClass(
       repositoriesDomainDir,
-      repositoryFunctionDataTemplate(featureName, usecaseName),
+      endOfClass: repositoryFunctionDataTemplate(featureName, usecaseName),
       importContent:
           "import '../../domain/usecases/${usecaseName.snakeCase}_usecase.dart';",
     );
 
-    await FileHelper.addToTheEndOfClass(
+    await FileHelper.addToTheClass(
       baseDatasourceDir,
-      baseDatasourcesFunctionTamplate(featureName, usecaseName),
+      endOfClass: baseDatasourcesFunctionTamplate(featureName, usecaseName),
       importContent:
           "import '../../domain/usecases/${usecaseName.snakeCase}_usecase.dart';",
     );
 
-    await FileHelper.addToTheEndOfClass(
+    await FileHelper.addToTheClass(
       datasourceDir,
-      datasourcesFunctionTamplate(featureName, usecaseName),
+      endOfClass: datasourcesFunctionTamplate(featureName, usecaseName),
       importContent:
           "import '../../domain/usecases/${usecaseName.snakeCase}_usecase.dart';",
     );
@@ -95,9 +95,11 @@ class FlutterCleanArchitectureCLIUseCase {
 
     final providerDir = '$layerDir/providers/${featureDir}_provider.dart';
 
-    await FileHelper.addToTheEndOfClass(
+    await FileHelper.addToTheClass(
       providerDir,
-      providerFunctionTamplate(featureName, usecaseName),
+      biginOfClass:
+          'final ${usecaseName.capitalize}Usecase ${usecaseName}Usecase;',
+      endOfClass: providerFunctionTamplate(featureName, usecaseName),
       importContent:
           "import '../../domain/usecases/${usecaseName.snakeCase}_usecase.dart';",
     );

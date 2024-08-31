@@ -5,7 +5,6 @@ String providerFunctionTamplate(
   String usecaseName,
 ) =>
     """
-  final ${usecaseName.capitalize}Usecase ${usecaseName}Usecase;
   Future<void> $usecaseName({
     required ${usecaseName.capitalize}UsecaseInput ${usecaseName}UsecaseInput,
     Function()? onSuccess,
