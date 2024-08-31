@@ -19,18 +19,19 @@ class FileHelper {
     file.writeAsStringSync(newFileContent, mode: FileMode.write);
   }
 
-  static void addToTheEndOfClass(String path, String content) async {
+  static void addToTheEndOfClass(String path, String content) {
     final file = File(path);
 
-    final String fileString = await file.readAsString();
+    final String fileString = file.readAsStringSync();
 
     fileString.trim();
 
     int lastIndex = fileString.lastIndexOf('}');
-
+    print(lastIndex);
+    print(fileString.substring(0, lastIndex - 1));
     String newFileContent =
         "${fileString.substring(0, lastIndex - 1)} \n ${content.trim()} \n}";
 
-    file.writeAsString(newFileContent, mode: FileMode.write);
+    file.writeAsStringSync(newFileContent, mode: FileMode.write);
   }
 }
