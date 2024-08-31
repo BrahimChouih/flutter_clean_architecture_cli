@@ -39,9 +39,9 @@ class FileHelper {
     newFileContent = """
 ${importContent.trim()}
 ${newFileContent.substring(0, beginClassIndex)} {
-${biginOfClass.trim()}
+$biginOfClass
 ${newFileContent.substring(beginClassIndex + 1, endClassIndex)}
-${endOfClass.trim()}
+$endOfClass
 }
 """;
 
