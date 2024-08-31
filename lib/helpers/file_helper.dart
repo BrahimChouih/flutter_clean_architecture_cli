@@ -32,21 +32,17 @@ class FileHelper {
     fileString.trim();
     String newFileContent = fileString;
 
-    if (importContent != null) {
-      newFileContent = "${importContent.trim()}\n$newFileContent}";
-    }
+    final beginClassIndex = newFileContent.lastIndexOf('{');
+    final endClassIndex = newFileContent.lastIndexOf('}');
 
-    if (biginOfClass != null) {
-      int lastIndex = newFileContent.indexOf('{');
-      newFileContent =
-          "${newFileContent.substring(0, lastIndex)}\n { ${biginOfClass.trim()}\n${newFileContent.substring(lastIndex)}";
-    }
-
-    if (endOfClass != null) {
-      int lastIndex = newFileContent.lastIndexOf('}');
-      newFileContent =
-          "${newFileContent.substring(0, lastIndex)} \n ${endOfClass.trim()} \n}";
-    }
+    newFileContent = """
+${importContent?.trim()}
+${newFileContent.substring(0, beginClassIndex)} {
+${biginOfClass?.trim()}
+${newFileContent.substring(beginClassIndex, endClassIndex)}
+${endOfClass?.trim()}
+}
+""";
 
     file.writeAsStringSync(newFileContent, mode: FileMode.write);
   }
