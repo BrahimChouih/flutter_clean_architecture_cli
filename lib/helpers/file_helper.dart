@@ -22,9 +22,9 @@ class FileHelper {
 
   static void addToTheClass(
     String path, {
-    String? endOfClass,
-    String? biginOfClass,
-    String? importContent,
+    String endOfClass = '',
+    String biginOfClass = '',
+    String importContent = '',
   }) {
     final file = File(path);
 
@@ -37,11 +37,11 @@ class FileHelper {
     final endClassIndex = newFileContent.whereLast('}');
 
     newFileContent = """
-${importContent?.trim()}
+${importContent.trim()}
 ${newFileContent.substring(0, beginClassIndex)} {
-${biginOfClass?.trim()}
+${biginOfClass.trim()}
 ${newFileContent.substring(beginClassIndex + 1, endClassIndex)}
-${endOfClass?.trim()}
+${endOfClass.trim()}
 }
 """;
 
