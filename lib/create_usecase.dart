@@ -3,6 +3,7 @@ import 'package:flutter_clean_architecture_cli/feature_template/data/datasource/
 import 'package:flutter_clean_architecture_cli/feature_template/data/datasource/function_template/remote_datasource_function_template.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/domain/repositories/base_repository_fuction_template.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/domain/usecases/usecase_tamplate.dart';
+import 'package:flutter_clean_architecture_cli/feature_template/presentation/providers/provider_function_template.dart';
 import 'package:flutter_clean_architecture_cli/helpers/file_helper.dart';
 
 import 'feature_template/data/repositories/repository_fuction_template.dart';
@@ -29,7 +30,7 @@ class FlutterCleanArchitectureCLIUseCase {
     createDomainLayer();
 
     //// Presentation layer
-    // createPresentationLayer();
+    createPresentationLayer();
 
     print('Feature "$featureName" structure created successfully.');
   }
@@ -84,6 +85,19 @@ class FlutterCleanArchitectureCLIUseCase {
     await FileHelper.addToTheEndOfClass(
       datasourceDir,
       datasourcesFunctionTamplate(featureName, usecaseName),
+      importContent:
+          "import '../../domain/usecases/${usecaseName.snakeCase}_usecase.dart';",
+    );
+  }
+
+  static void createPresentationLayer() async {
+    final layerDir = '$baseDir/presentation';
+
+    final providerDir = '$layerDir/providers/${featureDir}_provider.dart';
+
+    await FileHelper.addToTheEndOfClass(
+      providerDir,
+      providerFunctionTamplate(featureName, usecaseName),
       importContent:
           "import '../../domain/usecases/${usecaseName.snakeCase}_usecase.dart';",
     );
