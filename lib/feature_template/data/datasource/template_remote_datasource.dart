@@ -19,12 +19,12 @@ class ${featureName.moduleName}RemoteDataSource implements Base${featureName.mod
     dynamic responceData;
     if (isUpdate) {
       responceData = await APIHelper.post(
-        endpoint: '\${APIConfigs.transactions}/\${input.model.id}',
+        endpoint: '\${APIConfigs.${featureName}s}/\${input.model.id}',
         data: input.model.toJson(),
       );
     } else {
       responceData = await APIHelper.post(
-        endpoint: APIConfigs.transactions,
+        endpoint: APIConfigs.${featureName}s,
         data: input.model.toJson(),
       );
     }
@@ -40,7 +40,7 @@ class ${featureName.moduleName}RemoteDataSource implements Base${featureName.mod
     Get${featureName.moduleName}sUsecaseInput input = const Get${featureName.moduleName}sUsecaseInput(),
   }) async {
     dynamic responceData = await APIHelper.get(
-      endpoint: APIConfigs.transactions,
+      endpoint: APIConfigs.${featureName}s,
       queryParameters: {}..addAll(input.paginationOptions.toJson()),
     );
 
@@ -60,7 +60,7 @@ class ${featureName.moduleName}RemoteDataSource implements Base${featureName.mod
     required Get${featureName.moduleName}DetailsUsecaseInput input,
   }) async {
     dynamic responceData = await APIHelper.get(
-      endpoint: '\${APIConfigs.transactions}/\${input.id}',
+      endpoint: '\${APIConfigs.${featureName}s}/\${input.id}',
     );
 
     if (responceData != null) {
