@@ -12,7 +12,7 @@ void main(List<String> arguments) {
   if (functionName == '-feature') {
     final featureName = arguments[1];
     FlutterCleanArchitectureCLIFeature.createFeatureStructure(featureName);
-    _runPubget(true);
+    // _runPubget(true);
   } else if (functionName == '-usecase') {
     final featureName = arguments[2];
     final usecaseName = arguments[1];

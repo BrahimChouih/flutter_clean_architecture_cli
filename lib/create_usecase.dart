@@ -35,7 +35,7 @@ class FlutterCleanArchitectureCLIUseCase {
     print('Feature "$featureName" structure created successfully.');
   }
 
-  static void createDomainLayer() async {
+  static void createDomainLayer() {
     final layerDir = '$baseDir/domain';
 
     final repositoriesDomainDir =
@@ -56,7 +56,7 @@ class FlutterCleanArchitectureCLIUseCase {
     );
   }
 
-  static void createDataLayer() async {
+  static void createDataLayer() {
     final layerDir = '$baseDir/data';
 
     final repositoriesDomainDir =
@@ -90,7 +90,7 @@ class FlutterCleanArchitectureCLIUseCase {
     );
   }
 
-  static void createPresentationLayer() async {
+  static void createPresentationLayer() {
     final layerDir = '$baseDir/presentation';
 
     final providerDir = '$layerDir/providers/${featureDir}_provider.dart';

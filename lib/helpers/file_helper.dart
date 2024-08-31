@@ -7,16 +7,16 @@ class FileHelper {
     file.writeAsStringSync(content);
   }
 
-  static Future<void> addToTheBeginOfFile(String path, String content) async {
+  static void addToTheBeginOfFile(String path, String content) {
     final file = File(path);
 
-    final String fileString = await file.readAsString();
+    final String fileString = file.readAsStringSync();
 
     fileString.trim();
 
     String newFileContent = "${content.trim()}\n$fileString}";
 
-    await file.writeAsString(newFileContent, mode: FileMode.write);
+    file.writeAsStringSync(newFileContent, mode: FileMode.write);
   }
 
   static void addToTheClass(
