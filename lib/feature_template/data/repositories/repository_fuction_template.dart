@@ -11,7 +11,7 @@ String repositoryFunctionDataTemplate(
   }) async {
     try {
       return Right(
-        await remoteDataSource.usecaseName(
+        await remoteDataSource.$usecaseName(
           ${usecaseName}UsecaseInput: ${usecaseName}UsecaseInput,
         ),
       );

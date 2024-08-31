@@ -5,11 +5,12 @@ String datasourcesFunctionTamplate(
   String usecaseName,
 ) =>
     """
+  @override
   Future<${usecaseName.capitalize}UsecaseOutput> $usecaseName({
     required ${usecaseName.capitalize}UsecaseInput ${usecaseName}UsecaseInput,
   }) async {
     dynamic responceData = await APIHelper.post(
-      endpoint: '\${APIConfigs.${featureName}s}/\$id',
+      endpoint: APIConfigs.${featureName}s',
       data: ${usecaseName}UsecaseInput.toJson(),
     );
 
