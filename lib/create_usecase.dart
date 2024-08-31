@@ -1,3 +1,4 @@
+import 'package:flutter_clean_architecture_cli/extensions/extension.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/domain/repositories/base_repository_fuction_template.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/domain/usecases/usecase_tamplate.dart';
 import 'package:flutter_clean_architecture_cli/helpers/file_helper.dart';
@@ -29,12 +30,13 @@ class FlutterCleanArchitectureCLIUseCase {
     print('Feature "$featureName" structure created successfully.');
   }
 
-  static void createDomainLayer() {
+  static void createDomainLayer() async {
     final layerDir = '$baseDir/domain';
 
     final repositoriesDomainDir =
         '$layerDir/repositories/base_${featureDir}_repository.dart';
-    final usecasesDir = '$layerDir/usecases/${usecaseName}_usecase.dart';
+    final usecasesDir =
+        '$layerDir/usecases/${usecaseName.snakeCase}_usecase.dart';
 
     FileHelper.createFile(
       usecasesDir,
@@ -43,7 +45,7 @@ class FlutterCleanArchitectureCLIUseCase {
 
     FileHelper.addToTheBeginOfFile(
       repositoriesDomainDir,
-      "import '../usecases/${usecaseName}_usecase.dart';",
+      "import '../usecases/${usecaseName.snakeCase}_usecase.dart';",
     );
 
     FileHelper.addToTheEndOfClass(

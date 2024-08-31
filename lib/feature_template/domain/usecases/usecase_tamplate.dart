@@ -2,8 +2,6 @@ import 'package:flutter_clean_architecture_cli/extensions/extension.dart';
 
 String usecaseTemplate(String featureName, String usecaseName) => """
 import 'package:dartz/dartz.dart';
-import '/core/pagination_controller/pagination_controller.dart';
-import '../../data/models/${featureName}_model/${featureName}_model.dart';
 import '../../domain/repositories/base_${featureName}_repository.dart';
 
 import '/core/failure/failure.dart';

@@ -7,16 +7,16 @@ class FileHelper {
     file.writeAsStringSync(content);
   }
 
-  static void addToTheBeginOfFile(String path, String content) async {
+  static void addToTheBeginOfFile(String path, String content) {
     final file = File(path);
 
-    final String fileString = await file.readAsString();
+    final String fileString = file.readAsStringSync();
 
     fileString.trim();
 
     String newFileContent = "${content.trim()}\n$fileString}";
 
-    file.writeAsString(newFileContent, mode: FileMode.write);
+    file.writeAsStringSync(newFileContent, mode: FileMode.write);
   }
 
   static void addToTheEndOfClass(String path, String content) async {
@@ -29,7 +29,7 @@ class FileHelper {
     int lastIndex = fileString.lastIndexOf('}');
 
     String newFileContent =
-        "${fileString.substring(0, lastIndex)} \n ${content.trim()} \n }";
+        "${fileString.substring(0, lastIndex)} \n ${content.trim()} \n}";
 
     file.writeAsString(newFileContent, mode: FileMode.write);
   }
