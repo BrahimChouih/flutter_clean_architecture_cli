@@ -16,7 +16,7 @@ class ${usecaseName.capitalize}Usecase {
   Future<Either<Failure, ${usecaseName.capitalize}UsecaseOutput>> call({
     required ${usecaseName.capitalize}UsecaseInput ${usecaseName}UsecaseInput,
   }) async {
-    return await repository.get${featureName.capitalize}s(
+    return await repository.$usecaseName(
       ${usecaseName}UsecaseInput: ${usecaseName}UsecaseInput,
     );
   }

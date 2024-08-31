@@ -14,7 +14,7 @@ class FileHelper {
 
     fileString.trim();
 
-    String newFileContent = "${content.trim()} \n $fileString}";
+    String newFileContent = "${content.trim()}\n$fileString}";
 
     file.writeAsString(newFileContent, mode: FileMode.write);
   }

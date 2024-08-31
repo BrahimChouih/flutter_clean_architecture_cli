@@ -5,7 +5,7 @@ String repositoryFunctionDomainTemplate(
   String usecaseName,
 ) =>
     """
-  Future<Either<Failure, ${usecaseName.capitalize}UsecaseOutput>> get${featureName.capitalize}({
+  Future<Either<Failure, ${usecaseName.capitalize}UsecaseOutput>> $usecaseName({
     required ${usecaseName.capitalize}UsecaseInput ${usecaseName}UsecaseInput,
   });
 """;
