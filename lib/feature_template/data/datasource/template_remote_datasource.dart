@@ -7,35 +7,42 @@ import '/core/helpers/api_helper.dart';
 import '/core/pagination_controller/pagination_controller.dart';
 import '../../data/models/${featureName}_model/${featureName}_model.dart';
 import 'base_${featureName}_remote_datasource.dart';
+import '../../domain/usecases/create_${featureName}_usecase.dart';
+import '../../domain/usecases/get_${featureName}_details_usecase.dart';
+import '../../domain/usecases/get_${featureName}s_usecase.dart';
 
 class ${featureName.capitalize}RemoteDataSource implements Base${featureName.capitalize}RemoteDataSource {
   @override
-  Future<${featureName.capitalize}Model?> create${featureName.capitalize}({
-    required ${featureName.capitalize}Model $featureName,
+  Future<Create${featureName.capitalize}UsecaseOutput?> create${featureName.capitalize}({
+    required Create${featureName.capitalize}UsecaseInput input,
     bool isUpdate = false,
   }) async {
     dynamic responceData;
     if (isUpdate) {
       responceData = await APIHelper.post(
-        endpoint: '\${APIConfigs.${featureName}s}/\${$featureName.id}',
-        data: $featureName.toJson(),
+        endpoint: '\${APIConfigs.transactions}/\${input.model.id}',
+        data: input.model.toJson(),
       );
     } else {
       responceData = await APIHelper.post(
-        endpoint: APIConfigs.${featureName}s,
-        data: $featureName.toJson(),
+        endpoint: APIConfigs.transactions,
+        data: input.model.toJson(),
       );
     }
-    return responceData == null ? null : ${featureName.capitalize}Model.fromJson(responceData);
+    return responceData == null
+        ? null
+        : Create${featureName.capitalize}UsecaseOutput(
+            data: ${featureName.capitalize}Model.fromJson(responceData),
+          );
   }
 
   @override
-  Future<List<${featureName.capitalize}Model>> get${featureName.capitalize}s({
-    PaginationOptions paginationOptions = const PaginationOptions(),
+  Future<Get${featureName.capitalize}sUsecaseOutput> get${featureName.capitalize}s({
+    Get${featureName.capitalize}sUsecaseInput input = const Get${featureName.capitalize}sUsecaseInput(),
   }) async {
     dynamic responceData = await APIHelper.get(
-      endpoint: APIConfigs.${featureName}s,
-      queryParameters: {}..addAll(paginationOptions.toJson()),
+      endpoint: APIConfigs.transactions,
+      queryParameters: {}..addAll(input.paginationOptions.toJson()),
     );
 
     if (responceData != null) {
@@ -43,22 +50,24 @@ class ${featureName.capitalize}RemoteDataSource implements Base${featureName.cap
       for (var element in (responceData as List)) {
         data.add(${featureName.capitalize}Model.fromJson(element));
       }
-      return data;
+      return Get${featureName.capitalize}sUsecaseOutput(data: data);
     } else {
       throw Failure.fromJson(responceData ?? {});
     }
   }
 
   @override
-  Future<${featureName.capitalize}Model> get${featureName.capitalize}({
-    required int id,
+  Future<Get${featureName.capitalize}DetailsUsecaseOutput> get${featureName.capitalize}({
+    required Get${featureName.capitalize}DetailsUsecaseInput input,
   }) async {
     dynamic responceData = await APIHelper.get(
-      endpoint: '\${APIConfigs.${featureName}s}/\$id',
+      endpoint: '\${APIConfigs.transactions}/\${input.id}',
     );
 
     if (responceData != null) {
-      return ${featureName.capitalize}Model.fromJson(responceData);
+      return Get${featureName.capitalize}DetailsUsecaseOutput(
+        data: ${featureName.capitalize}Model.fromJson(responceData),
+      );
     } else {
       throw Failure.fromJson(responceData ?? {});
     }

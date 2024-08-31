@@ -20,7 +20,8 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
     required this.create${featureName.capitalize}Usecase,
   });
 
-  PaginationController<${featureName.capitalize}Model> ${featureName}s = PaginationController<${featureName.capitalize}Model>();
+  PaginationController<${featureName.capitalize}Model> ${featureName}s =
+      PaginationController<${featureName.capitalize}Model>();
 
   Future<void> reinit() async {
     await Future.wait([
@@ -37,7 +38,9 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
     PaginationController<${featureName.capitalize}Model> controller = ${featureName}s;
 
     (await get${featureName.capitalize}sUsecase(
-      paginationOptions: controller.paginationOptions,
+      input: Get${featureName.capitalize}sUsecaseInput(
+        paginationOptions: controller.paginationOptions,
+      ),
     ))
         .fold(
       (l) {
@@ -46,13 +49,12 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
       },
       (r) {
         if (reinit) controller.emptyData();
-        controller.updateDataByPage(data: r);
+        controller.updateDataByPage(data: r.data);
         if (onSuccess != null) onSuccess();
       },
     );
     changeLoadingState(false);
   }
-
 
   Future<void> get${featureName.capitalize}Details({
     required int id,
@@ -62,7 +64,9 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
     changeLoadingState(true);
 
     (await get${featureName.capitalize}DetailsUsecase(
-      id: id,
+      input: Get${featureName.capitalize}DetailsUsecaseInput(
+        id: id,
+      ),
     ))
         .fold(
       (l) {
@@ -70,7 +74,7 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
         // showError(l);
       },
       (r) {
-        if (onSuccess != null) onSuccess(r);
+        if (onSuccess != null) onSuccess(r.data);
       },
     );
     changeLoadingState(false);
@@ -82,7 +86,12 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
     Function(Failure)? onError,
   }) async {
     changeLoadingState(true);
-    (await create${featureName.capitalize}Usecase($featureName: $featureName)).fold(
+    (await create${featureName.capitalize}Usecase(
+      input: Create${featureName.capitalize}UsecaseInput(
+        model: $featureName,
+      ),
+    ))
+        .fold(
       (l) {
         if (onError != null) onError(l);
         showError(l);
@@ -101,7 +110,12 @@ class ${featureName.capitalize}Provider extends ProviderTemplate {
     Function(Failure)? onError,
   }) async {
     changeLoadingState(true);
-    (await create${featureName.capitalize}Usecase.update($featureName: $featureName)).fold(
+    (await create${featureName.capitalize}Usecase.update(
+      input: Create${featureName.capitalize}UsecaseInput(
+        model: $featureName,
+      ),
+    ))
+        .fold(
       (l) {
         if (onError != null) onError(l);
         showError(l);

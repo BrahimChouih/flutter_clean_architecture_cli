@@ -13,13 +13,27 @@ class Get${featureName.capitalize}sUsecase {
 
   Get${featureName.capitalize}sUsecase(this.repository);
 
-  Future<Either<Failure, List<${featureName.capitalize}Model>>> call({
-    int? id,
-    PaginationOptions paginationOptions = const PaginationOptions(),
+  Future<Either<Failure, Get${featureName.capitalize}sUsecaseOutput>> call({
+    Get${featureName.capitalize}sUsecaseInput input =
+        const Get${featureName.capitalize}sUsecaseInput(),
   }) async {
     return await repository.get${featureName.capitalize}s(
-      paginationOptions: paginationOptions,
+      input: input,
     );
   }
+}
+
+class Get${featureName.capitalize}sUsecaseInput {
+  final PaginationOptions paginationOptions;
+
+  const Get${featureName.capitalize}sUsecaseInput({
+    this.paginationOptions = const PaginationOptions(),
+  });
+}
+
+class Get${featureName.capitalize}sUsecaseOutput {
+  final List<${featureName.capitalize}Model> data;
+
+  const Get${featureName.capitalize}sUsecaseOutput({this.data = const []});
 }
 """;

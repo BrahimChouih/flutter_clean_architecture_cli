@@ -12,21 +12,35 @@ class Create${featureName.capitalize}Usecase {
 
   Create${featureName.capitalize}Usecase(this.repository);
 
-  Future<Either<Failure, ${featureName.capitalize}Model?>> call({
-    required ${featureName.capitalize}Model $featureName,
+  Future<Either<Failure, Create${featureName.capitalize}UsecaseOutput?>> call({
+    required Create${featureName.capitalize}UsecaseInput input,
   }) async {
     return await repository.create${featureName.capitalize}(
-      $featureName: $featureName,
+      input: input,
     );
   }
 
-  Future<Either<Failure, ${featureName.capitalize}Model?>> update({
-    required ${featureName.capitalize}Model $featureName,
+  Future<Either<Failure, Create${featureName.capitalize}UsecaseOutput?>> update({
+    required Create${featureName.capitalize}UsecaseInput input,
   }) async {
     return await repository.create${featureName.capitalize}(
-      $featureName: $featureName,
+      input: input,
       isUpdate: true,
     );
   }
+}
+
+class Create${featureName.capitalize}UsecaseInput {
+  final ${featureName.capitalize}Model model;
+
+  const Create${featureName.capitalize}UsecaseInput({
+    required this.model,
+  });
+}
+
+class Create${featureName.capitalize}UsecaseOutput {
+  final ${featureName.capitalize}Model? model;
+
+  const Create${featureName.capitalize}UsecaseOutput({this.model});
 }
 """;

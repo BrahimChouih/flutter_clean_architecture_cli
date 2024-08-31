@@ -1,20 +1,22 @@
 import 'package:flutter_clean_architecture_cli/extensions/extension.dart';
 
 String baseDatasourcesTamplate(String featureName) => """
-import '/core/pagination_controller/pagination_controller.dart';
 import '../../data/models/${featureName}_model/${featureName}_model.dart';
+import '../../domain/usecases/create_${featureName}_usecase.dart';
+import '../../domain/usecases/get_${featureName}_details_usecase.dart';
+import '../../domain/usecases/get_${featureName}s_usecase.dart';
 
 abstract class Base${featureName.capitalize}RemoteDataSource {
-  Future<List<${featureName.capitalize}Model>> get${featureName.capitalize}s({
-    PaginationOptions paginationOptions = const PaginationOptions(),
+  Future<Get${featureName.capitalize}sUsecaseOutput> get${featureName.capitalize}s({
+    Get${featureName.capitalize}sUsecaseInput input = const Get${featureName.capitalize}sUsecaseInput(),
   });
 
-  Future<${featureName.capitalize}Model> get${featureName.capitalize}({
-    required int id,
+  Future<Get${featureName.capitalize}DetailsUsecaseOutput> get${featureName.capitalize}({
+    required Get${featureName.capitalize}DetailsUsecaseInput input,
   });
 
-  Future<${featureName.capitalize}Model?> create${featureName.capitalize}({
-    required ${featureName.capitalize}Model $featureName,
+  Future<Create${featureName.capitalize}UsecaseOutput?> create${featureName.capitalize}({
+    required Create${featureName.capitalize}UsecaseInput input,
     bool isUpdate = false,
   });
 }
