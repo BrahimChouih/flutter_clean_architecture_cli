@@ -18,7 +18,7 @@ class ${featureName.moduleName}RemoteDataSource implements Base${featureName.mod
   }) async {
     dynamic responceData;
     if (isUpdate) {
-      responceData = await APIHelper.post(
+      responceData = await APIHelper.patch(
         endpoint: '\${APIConfigs.${featureName.camelCase}s}/\${input.model.id}',
         data: input.model.toJson(),
       );
