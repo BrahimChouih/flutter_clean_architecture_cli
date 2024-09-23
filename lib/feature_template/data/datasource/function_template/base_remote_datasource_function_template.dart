@@ -5,7 +5,7 @@ String baseDatasourcesFunctionTamplate(
   String usecaseName,
 ) =>
     """
-  Future<${usecaseName.moduleName}UsecaseOutput> $usecaseName({
+  Future<${usecaseName.moduleName}UsecaseOutput> ${usecaseName.camelCase}({
     required ${usecaseName.moduleName}UsecaseInput input,
   });
 """;

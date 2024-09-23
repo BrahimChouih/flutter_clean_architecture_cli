@@ -6,14 +6,14 @@ String providerFunctionTamplate(
 ) =>
     """
   Future<void> $usecaseName({
-    required ${usecaseName.moduleName}UsecaseInput ${usecaseName.camelCase}UsecaseInput,
+    required ${usecaseName.moduleName}UsecaseInput input,
     Function()? onSuccess,
     Function(Failure)? onError,
   }) async {
     changeLoadingState(true);
 
     (await ${usecaseName}Usecase(
-      ${usecaseName}UsecaseInput: ${usecaseName}UsecaseInput,
+      input: input,
     ))
         .fold(
       (l) {

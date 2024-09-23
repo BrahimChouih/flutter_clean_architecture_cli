@@ -6,7 +6,7 @@ String datasourcesFunctionTamplate(
 ) =>
     """
   @override
-  Future<${usecaseName.moduleName}UsecaseOutput> $usecaseName({
+  Future<${usecaseName.moduleName}UsecaseOutput> ${usecaseName.camelCase}({
     required ${usecaseName.moduleName}UsecaseInput input,
   }) async {
     dynamic responceData = await APIHelper.post(
