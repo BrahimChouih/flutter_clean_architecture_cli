@@ -12,7 +12,7 @@ String providerFunctionTamplate(
   }) async {
     changeLoadingState(true);
 
-    (await ${usecaseName.moduleName}Usecase(
+    (await ${usecaseName.camelCase}Usecase(
       input: input,
     ))
         .fold(
