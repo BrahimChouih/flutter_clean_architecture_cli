@@ -14,7 +14,7 @@ class ${usecaseName.moduleName}Usecase {
   Future<Either<Failure, ${usecaseName.moduleName}UsecaseOutput>> call({
     required ${usecaseName.moduleName}UsecaseInput input,
   }) async {
-    return await repository.$usecaseName(
+    return await repository.${usecaseName.camelCase}(
       input: input,
     );
   }
