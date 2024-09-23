@@ -7,12 +7,12 @@ String repositoryFunctionDataTemplate(
     """
   @override
   Future<Either<Failure, ${usecaseName.moduleName}UsecaseOutput>> $usecaseName({
-    required ${usecaseName.moduleName}UsecaseInput ${usecaseName}UsecaseInput,
+    required ${usecaseName.moduleName}UsecaseInput input,
   }) async {
     try {
       return Right(
         await remoteDataSource.$usecaseName(
-          ${usecaseName}UsecaseInput: ${usecaseName}UsecaseInput,
+          input: input,
         ),
       );
     } on Failure catch (e) {

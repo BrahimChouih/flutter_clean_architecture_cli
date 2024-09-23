@@ -12,10 +12,10 @@ class ${usecaseName.moduleName}Usecase {
   ${usecaseName.moduleName}Usecase(this.repository);
 
   Future<Either<Failure, ${usecaseName.moduleName}UsecaseOutput>> call({
-    required ${usecaseName.moduleName}UsecaseInput ${usecaseName}UsecaseInput,
+    required ${usecaseName.moduleName}UsecaseInput input,
   }) async {
     return await repository.$usecaseName(
-      ${usecaseName}UsecaseInput: ${usecaseName}UsecaseInput,
+      input: input,
     );
   }
 }

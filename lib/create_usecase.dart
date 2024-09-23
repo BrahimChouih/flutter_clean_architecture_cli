@@ -98,7 +98,7 @@ class FlutterCleanArchitectureCLIUseCase {
     FileHelper.addToTheClass(
       providerDir,
       biginOfClass:
-          '  final ${usecaseName.capitalize}Usecase ${usecaseName}Usecase;',
+          '  final ${usecaseName.moduleName}Usecase ${usecaseName}Usecase;',
       endOfClass: providerFunctionTamplate(featureName, usecaseName),
       importContent:
           "import '../../domain/usecases/${usecaseName.snakeCase}_usecase.dart';",

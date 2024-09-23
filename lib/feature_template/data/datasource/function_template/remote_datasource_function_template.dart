@@ -7,11 +7,11 @@ String datasourcesFunctionTamplate(
     """
   @override
   Future<${usecaseName.moduleName}UsecaseOutput> $usecaseName({
-    required ${usecaseName.moduleName}UsecaseInput ${usecaseName}UsecaseInput,
+    required ${usecaseName.moduleName}UsecaseInput input,
   }) async {
     dynamic responceData = await APIHelper.post(
       endpoint: APIConfigs.${featureName}s,
-      data: ${usecaseName}UsecaseInput.toJson(),
+      data: input.toJson(),
     );
 
     if (responceData != null) {

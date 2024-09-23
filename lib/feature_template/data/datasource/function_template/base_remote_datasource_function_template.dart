@@ -6,6 +6,6 @@ String baseDatasourcesFunctionTamplate(
 ) =>
     """
   Future<${usecaseName.moduleName}UsecaseOutput> $usecaseName({
-    required ${usecaseName.moduleName}UsecaseInput ${usecaseName}UsecaseInput,
+    required ${usecaseName.moduleName}UsecaseInput input,
   });
 """;
