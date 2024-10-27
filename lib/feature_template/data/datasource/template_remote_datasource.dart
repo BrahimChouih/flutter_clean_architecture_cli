@@ -5,12 +5,12 @@ import '/core/configs/api_config.dart';
 import '/core/failure/failure.dart';
 import '/core/helpers/api_helper.dart';
 import '../../data/models/${featureName}_model/${featureName}_model.dart';
-import 'base_${featureName}_remote_datasource.dart';
+import 'base_${featureName}_datasource.dart';
 import '../../domain/usecases/create_${featureName}_usecase.dart';
 import '../../domain/usecases/get_${featureName}_details_usecase.dart';
 import '../../domain/usecases/get_${featureName}s_usecase.dart';
 
-class ${featureName.moduleName}RemoteDataSource implements Base${featureName.moduleName}RemoteDataSource {
+class ${featureName.moduleName}RemoteDataSource implements Base${featureName.moduleName}DataSource {
   @override
   Future<Create${featureName.moduleName}UsecaseOutput?> create${featureName.moduleName}({
     required Create${featureName.moduleName}UsecaseInput input,

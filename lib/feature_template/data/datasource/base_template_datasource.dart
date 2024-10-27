@@ -5,7 +5,7 @@ import '../../domain/usecases/create_${featureName}_usecase.dart';
 import '../../domain/usecases/get_${featureName}_details_usecase.dart';
 import '../../domain/usecases/get_${featureName}s_usecase.dart';
 
-abstract class Base${featureName.moduleName}RemoteDataSource {
+abstract class Base${featureName.moduleName}DataSource {
   Future<Get${featureName.moduleName}sUsecaseOutput> get${featureName.moduleName}s({
     Get${featureName.moduleName}sUsecaseInput input = const Get${featureName.moduleName}sUsecaseInput(),
   });

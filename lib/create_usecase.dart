@@ -1,5 +1,5 @@
 import 'package:flutter_clean_architecture_cli/extensions/extension.dart';
-import 'package:flutter_clean_architecture_cli/feature_template/data/datasource/function_template/base_remote_datasource_function_template.dart';
+import 'package:flutter_clean_architecture_cli/feature_template/data/datasource/function_template/base_datasource_function_template.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/data/datasource/function_template/remote_datasource_function_template.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/domain/repositories/base_repository_fuction_template.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/domain/usecases/usecase_tamplate.dart';
@@ -63,7 +63,7 @@ class FlutterCleanArchitectureCLIUseCase {
         '$layerDir/repositories/${featureDir}_repository.dart';
 
     final baseDatasourceDir =
-        '$layerDir/datasources/base_${featureDir}_remote_datasource.dart';
+        '$layerDir/datasources/base_${featureDir}_datasource.dart';
 
     final datasourceDir =
         '$layerDir/datasources/${featureDir}_remote_datasource.dart';

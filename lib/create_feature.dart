@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter_clean_architecture_cli/feature_template/data/datasource/base_template_remote_datasource.dart';
+import 'package:flutter_clean_architecture_cli/feature_template/data/datasource/base_template_datasource.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/data/datasource/template_remote_datasource.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/data/models/template_model/template_model.dart';
 import 'package:flutter_clean_architecture_cli/feature_template/data/repositories/template_repository.dart';
@@ -51,7 +51,7 @@ class FlutterCleanArchitectureCLIFeature {
 
     //// Data
     FileHelper.createFile(
-      '${dataSourcesDir.path}/base_${featureDir}_remote_datasource.dart',
+      '${dataSourcesDir.path}/base_${featureDir}_datasource.dart',
       baseDatasourcesTamplate(featureName),
     );
     FileHelper.createFile(
