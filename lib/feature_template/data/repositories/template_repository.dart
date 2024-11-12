@@ -8,10 +8,10 @@ import '../../domain/usecases/create_${featureName}_usecase.dart';
 import '../../domain/usecases/get_${featureName}_details_usecase.dart';
 import '../../domain/usecases/get_${featureName}s_usecase.dart';
 
-import '../datasources/base_${featureName}_remote_datasource.dart';
+import '../datasources/base_${featureName}_datasource.dart';
 
 class ${featureName.moduleName}Repository implements Base${featureName.moduleName}Repository {
-  final Base${featureName.moduleName}RemoteDataSource remoteDataSource;
+  final Base${featureName.moduleName}DataSource remoteDataSource;
 
   ${featureName.moduleName}Repository({required this.remoteDataSource});
 
